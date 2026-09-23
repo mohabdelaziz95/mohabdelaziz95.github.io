@@ -5,6 +5,11 @@ url: https://mohabdelaziz95.github.io
 baseurl: ""
 lang: en
 
+# Without this, Jekyll renders dates in the build machine's zone. GitHub builds
+# in UTC, so a post dated 00:00 +0200 rendered as the previous day on the live
+# site while looking correct locally.
+timezone: Africa/Cairo
+
 author:
   name: Mohamed AbdElaziz
 
