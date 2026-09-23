@@ -1,0 +1,69 @@
+title: Mohamed AbdElaziz
+tagline: Engineering
+description: Software, life, and the things I get wrong...
+url: https://mohabdelaziz95.github.io
+baseurl: ""
+lang: en
+
+author:
+  name: Mohamed AbdElaziz
+
+social:
+  name: Mohamed AbdElaziz
+  links:
+    - https://github.com/mohabdelaziz95
+    - https://www.linkedin.com/in/mohabdelaziz95/
+
+logo: /assets/images/me.jpg
+
+google_analytics: G-22T9FE28X5
+
+# Keeps every existing post URL byte-identical to the old hand-written site:
+# _posts/2021-02-12-value-objects.md -> /blog/2021/value-objects
+permalink: /blog/:year/:title
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-redirect-from
+
+feed:
+  path: /feed.xml
+
+redirect_from:
+  json: false
+
+# This site ships its own layouts and CSS. Without an explicit empty value,
+# GitHub Pages falls back to jekyll-theme-primer and emits an unused 76 KB
+# /assets/css/style.css into the build.
+theme:
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      nav: blog
+      progress: true
+
+sass:
+  style: compressed
+
+exclude:
+  - assets/images/img_1.png   # original portrait; the cropped me.webp/me.jpg are what ship
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - .jekyll-cache
+  - node_modules

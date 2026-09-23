@@ -1,0 +1,38 @@
+---
+layout: default
+---
+<article class="wrap">
+
+  <header class="post-header">
+    <h1>{{ page.title }}</h1>
+    <ul class="meta">
+      <li>{% include icon.html name="calendar" %}
+        <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %-d, %Y" }}</time>
+      </li>
+      <li>{% include icon.html name="clock" %}
+        {%- assign words = content | number_of_words -%}
+        <span>{{ words | divided_by: 200 | plus: 1 }} min read</span>
+      </li>
+    </ul>
+  </header>
+
+  {% if page.hero %}
+  <figure class="figure">
+    <img src="{{ page.hero | relative_url }}"
+         width="{{ page.hero_width | default: 1600 }}"
+         height="{{ page.hero_height | default: 1064 }}"
+         alt="{{ page.hero_alt | default: page.title | escape }}"
+         fetchpriority="high" decoding="async">
+    {% if page.hero_caption %}<figcaption>{{ page.hero_caption }}</figcaption>{% endif %}
+  </figure>
+  {% endif %}
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  <nav class="post-footer">
+    <a href="{{ '/' | relative_url }}">{% include icon.html name="arrow-left" %} Home</a>
+  </nav>
+
+</article>

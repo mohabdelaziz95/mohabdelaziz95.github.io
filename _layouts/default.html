@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'en' }}">
+<head>{% include head.html %}</head>
+<body>
+
+<a class="skip" href="#content">Skip to content</a>
+
+<header class="site-header" id="site-header">
+  <div class="wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">Mohamed AbdElaziz</a>
+
+    <div class="theme-switch" role="group" aria-label="Colour theme">
+      <button type="button" data-theme-choice="light" aria-pressed="false" title="Light" aria-label="Light theme">{% include icon.html name="sun" %}</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false" title="Dark" aria-label="Dark theme">{% include icon.html name="moon" %}</button>
+      <button type="button" data-theme-choice="system" aria-pressed="true" title="System" aria-label="Match system theme">{% include icon.html name="system" %}</button>
+    </div>
+  </div>
+  {% if page.progress %}<div class="progress" id="progress"></div>{% endif %}
+</header>
+
+<main id="content">
+  {{ content }}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="identity">
+      <img src="{{ '/assets/images/me.webp' | relative_url }}" width="66" height="66"
+           alt="Mohamed AbdElaziz" loading="lazy" decoding="async">
+      <div>
+        <p class="name">Mohamed AbdElaziz</p>
+        <p class="role">Engineering</p>
+        <p class="blurb">Software, life, and the things I get wrong...</p>
+      </div>
+    </div>
+
+    <ul class="socials">
+      <li><a href="https://github.com/mohabdelaziz95" target="_blank" rel="me noopener" aria-label="GitHub">{% include icon.html name="github" %}</a></li>
+      <li><a href="https://www.linkedin.com/in/mohabdelaziz95/" target="_blank" rel="me noopener" aria-label="LinkedIn">{% include icon.html name="linkedin" %}</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var meta = document.getElementById('theme-color');
+  var buttons = document.querySelectorAll('[data-theme-choice]');
+  var dark = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function stored() {
+    try { return localStorage.getItem('theme'); } catch (e) { return null; }
+  }
+
+  function paint() {
+    var choice = stored() || 'system';
+    if (choice === 'system') { root.removeAttribute('data-theme'); }
+    else { root.setAttribute('data-theme', choice); }
+
+    var isDark = choice === 'dark' || (choice === 'system' && dark.matches);
+    if (meta) { meta.setAttribute('content', isDark ? '#201d17' : '#fffcf5'); }
+
+    buttons.forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.themeChoice === choice));
+    });
+  }
+
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var choice = b.dataset.themeChoice;
+      try {
+        if (choice === 'system') { localStorage.removeItem('theme'); }
+        else { localStorage.setItem('theme', choice); }
+      } catch (e) {}
+      paint();
+    });
+  });
+
+  dark.addEventListener('change', paint);
+  paint();
+
+  // Reading progress, post pages only.
+  var bar = document.getElementById('progress');
+  if (bar) {
+    var ticking = false;
+    function update() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.setProperty('--scroll', max > 0 ? Math.min(window.scrollY / max, 1) : 0);
+      ticking = false;
+    }
+    addEventListener('scroll', function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(update); }
+    }, { passive: true });
+    update();
+  }
+})();
+</script>
+{% include analytics.html %}
+</body>
+</html>

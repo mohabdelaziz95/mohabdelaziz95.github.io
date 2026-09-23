@@ -1,246 +1,43 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+---
+layout: default
+title: Mohamed AbdElaziz
+description: Software, life, and the things I get wrong...
+arabic_font: true
+---
+<div class="wrap">
+  <figure class="quote" lang="ar" dir="rtl">
+    <blockquote>
+      <p>كل مجهول يبدو صعبًا لأول مرة، ثم إذا أعمل الإنسان فيه عقله واجتهد هان عليه الصعب، وأدرك منه غايته</p>
+    </blockquote>
+  </figure>
 
-    <title>Mohamed AbdElaziz</title>
-    <meta name="Mohamed AbdElaziz" content="name"/>
-    <meta name="og:title" content="Mohamed AbdElaziz - Backend Engineer">
-    <meta property="og:url" content="https://mohabdelaziz95.github.io/">
-    <meta name="og:description" content="I'm an enthusiastic Backend Engineer at robustastudio, olx">
-    <meta property="og:image" content="https://mohabdelaziz95.github.io/assets/images/me.jpg">
-    <meta name="keywords" content="mohabdelaziz95, backend engineer, software engineer, robustastudio, olx, laravel, php, docker">
-    <meta property="og:locale" content="en">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:title" content="Mohamed AbdElaziz - Backend Engineer">
-    <meta property="twitter:description" content="I'm an enthusiastic Backend Engineer at robustastudio, olx">
-    <meta property="twitter:image" content="https://mohabdelaziz95.github.io/assets/images/me.jpg">
-    <meta property="twitter:site" content="Mohamed AbdElaziz - Backend Engineer">
-    <meta property="twitter:creator" content="@mohabdelaziz95">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="language" content="English">
-    <meta name="author" content="Mohamed AbdElaziz (mohabdelaziz95)">
+  <section aria-labelledby="writing">
+    <h2 class="section-title" id="writing">Writing</h2>
 
-    <link rel="apple-touch-icon" sizes="57x57" href="assets/icons/favicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="assets/icons/favicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="assets/icons/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="assets/icons/favicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="assets/icons/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="assets/icons/favicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="assets/icons/favicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/favicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/favicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="assets/icons/favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/icons/favicons/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
-    <!-- styles -->
-    <link href="assets/css/tailwind.min.css" rel="stylesheet">
-
-    <style>
-        blockquote p:before {
-            color: #3a3a3a;
-            content: open-quote;
-            font-size: 4em;
-            line-height: 0.1em;
-            vertical-align: -0.4em;
-        }
-
-        blockquote p:after {
-            color: #3a3a3a;
-            content: close-quote;
-            font-size: 4em;
-            line-height: 0.1em;
-            vertical-align: -0.4em;
-        }
-
-        ::selection {
-            background: #FFF7B1;
-        }
-    </style>
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cardo&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi&display=swap" rel="stylesheet">
-</head>
-
-<body class="font-sans bg-gray-100 leading-normal tracking-normal h-screen flex flex-col justify-between">
-
-<!------------------------------------ <Header> ------------------------------------>
-<nav id="header" class="fixed w-full z-10 top-0">
-
-    <div id="progress" class="h-0.5 z-20 top-0"
-         style="background:linear-gradient(to right, #C90B0C var(--scroll), transparent 0);"></div>
-
-    <div class="w-full md:max-w-4xl mx-auto flex flex-wrap items-center justify-between mt-0 pt-3">
-
-        <div class="pl-4 lg:hidden">
-            <a class="no-underline hover:no-underline" href="https://mohabdelaziz95.github.io/">
-                <img class="h-12 rounded-full border-2 border-gray-200"
-                     src="assets/images/me.jpg" alt="Profile Image">
-            </a>
+    <ul class="post-list">
+      {% for post in site.posts %}
+      <li class="card">
+        {% if post.card_image %}
+        <a href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
+          <img src="{{ post.card_image | relative_url }}" width="800" height="350"
+               alt="" loading="lazy" decoding="async">
+        </a>
+        {% endif %}
+        <div class="card-body">
+          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+          <ul class="meta">
+            <li>{% include icon.html name="calendar" %}
+              <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
+            </li>
+            <li>{% include icon.html name="clock" %}
+              <span>{{ post.content | number_of_words | divided_by: 200 | plus: 1 }} min read</span>
+            </li>
+          </ul>
+          <p>{{ post.description | default: post.excerpt | strip_html | truncate: 150 }}</p>
         </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
 
-        <div class="block lg:hidden px-4 pb-3">
-            <button id="nav-toggle"
-                    class="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-900 hover:border-gray-500 appearance-none focus:outline-none">
-                <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <title>Menu</title>
-                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
-                </svg>
-            </button>
-        </div>
-
-        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden lg:block mt-2 lg:mt-0 bg-gray-100 md:bg-transparent z-20"
-             id="nav-content">
-            <ul class="list-reset lg:flex justify-center flex-1 items-center">
-                <li class="mr-0">
-                    <a class="inline-block py-2 px-4 text-gray-900 font-bold no-underline"
-                       href="https://mohabdelaziz95.github.io/">Home</a>
-                </li>
-
-                <li class="mr-0">
-                    <a class="inline-block text-gray-600 no-underline hover:text-gray-900 hover:text-underline py-2 px-4"
-                       href="https://mohabdelaziz95.github.io/blog">Blog</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<!------------------------------------ </Header> ------------------------------------>
-
-<!------------------------------------ <Container> ------------------------------------>
-<div class="container bg-white w-full h-full md:max-w-5xl mx-auto" style="font-family: 'Cardo', serif;">
-    <section class="flex flex-col justify-center h-screen">
-
-        <div class="hidden md:inline-flex lg:inline-flex flex justify-between align-items-center w-4/5 mx-auto">
-            <div class="py-8">
-                <div class="prose mb-8 items-center align-middle">
-                    <p class="text-xl lg:text-3xl font-black">Mohamed AbdElaziz
-                    </p>
-                    <a class="underline text-xs lg:text-base ml-5 md:ml-10 lg:ml-16 font-black"
-                       href="#">@mohabdelaziz95</a>
-                    <div class="mt-2 lg:px-10 md:ml-12">
-                        <a href="https://twitter.com/mohabdelaziz95" target="_blank" class="inline-block">
-                            <img src="assets/icons/twitter.svg" alt="twitter" class="w-6 h-6">
-                        </a>
-                        <a href="https://github.com/mohabdelaziz95" target="_blank" class="inline-block">
-                            <img src="assets/icons/github.svg" alt="github" class="w-6 h-6">
-                        </a>
-                        <a href="https://www.linkedin.com/in/mohabdelaziz95/" target="_blank" class="inline-block">
-                            <img src="assets/icons/linkedin.svg" alt="linkedin" class="w-6 h-6">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <img class="block mx-auto sm:flex-shrink-0 h-32 rounded-full border-2 border-gray-200"
-                     src="assets/images/me.jpg" alt="Profile Image">
-            </div>
-
-            <div class="py-8">
-                <div class="prose mb-8">
-                    <h1 class="text-xl lg:text-3xl font-black">Backend Engineer</h1>
-                    <p class="text-xs lg:text-base font-semibold">
-                        <a class="text-xs lg:text-base underline md:px-10 lg:px-16 font-black"
-                           href="https://robustastudio.com/" target="_blank">
-                            @robustastudio,
-                        </a>
-                        <br>
-                        <a class="text-xs lg:text-base underline md:px-16 lg:px-24 font-black"
-                           href="https://www.olx.com.eg/en/" target="_blank">
-                            @olx
-                        </a>
-                    </p>
-                    <p class="text-lg"></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="lg:hidden md:hidden px-5 align-items-center justify-center">
-            <div class="mb-8"><h2 class="text-xl font-bold pb-5">Who am I?</h2>
-                <p>Hello I am</p>
-                <h2 class="text-lg font-black">
-                    Mohamed AbdElaziz <a class="underline text-sm text-gray-900 font-bold"
-                                         href="https://twitter.com/mohabdelaziz95">(@mohabdelaziz95)</a>
-                </h2>
-                <h2 class="text-lg font-black">a Backend Engineer.</h2>
-                <p> I work
-                    <a class="underline font-bold" target="_blank"
-                       href="https://robustastudio.com/">
-                        <strong>@robustastudio</strong>
-                    </a>,
-                    <a class="underline font-bold" target="_blank"
-                       href="https://www.olx.com.eg/en/">
-                        <strong>@olx</strong>
-                    </a>
-                </p>
-                <ul class="flex space-x-2 list-none pt-2">
-                    <li>
-                        <a href="https://twitter.com/mohabdelaziz95" target="_blank" class="inline-block">
-                            <img src="assets/icons/twitter.svg" alt="twitter" class="w-6 h-6">
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="https://github.com/mohabdelaziz95" target="_blank" class="inline-block">
-                            <img src="assets/icons/github.svg" alt="github" class="w-6 h-6">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/mohabdelaziz95/" target="_blank" class="inline-block">
-                            <img src="assets/icons/linkedin.svg" alt="linkedin" class="w-6 h-6">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="mx-auto hidden lg:inline-flex md:inline-flex">
-            <blockquote style="font-family: 'Reem Kufi', sans-serif; quotes: '\201C''\201D''\2018''\2019';"
-                        class="text-xs md:text-base lg:text-2xl leading-loose my-8 mx-5">
-                <p>
-                    كل مجهول يبدو صعبا لأول مره، ثم
-                    إذا اعمل الإنسان فيه عقله واجتهد هان عليه الصعب، وأدرك منه غايته
-                </p>
-            </blockquote>
-        </div>
-    </section>
 </div>
-<!------------------------------------ </>Container> ------------------------------------>
-
-<!------------------------------------ <Footer> ------------------------------------>
-<footer class="bg-white border-t border-gray-400 shadow w-full absolute bottom-0 left-0">
-    <div class="container max-w-4xl mx-auto flex">
-        <div class="mx-auto flex flex-wrap">
-            <div class="flex w-full">
-                <div class="px-8 justify-center">
-                    <p class="py-4 text-gray-600 text-sm">
-                        © 2021 Mohamed AbdElaziz
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<!------------------------------------ </Footer> ------------------------------------>
-
-<script src="assets/js/main.js"></script>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-22T9FE28X5"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-22T9FE28X5');
-</script>
-</body>
-</html>
